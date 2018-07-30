@@ -8,6 +8,7 @@ set -e
 # parse and derive params
 BUILD_DIR=$1
 CACHE_DIR=$2
+DEB_FILES=support
 LP_DIR=`cd $(dirname $0); cd ..; pwd`
 
 function topic() {
@@ -40,9 +41,9 @@ apt-cache $APT_OPTIONS madison git
 apt-cache $APT_OPTIONS policy git
 
 topic "Fetching .debs for git"
-apt-get $APT_OPTIONS --allow-unauthenticated -y --force-yes --no-install-recommends -d install --reinstall git=1:2.18.0-0ppa1~ubuntu16.04.1
+#apt-get $APT_OPTIONS --allow-unauthenticated -y --force-yes --no-install-recommends -d install --reinstall git=1:2.18.0-0ppa1~ubuntu16.04.1
 
-for DEB in $(ls -1 $APT_CACHE_DIR/archives/*.deb); do
+for DEB in $(ls -1 $DEB_FILES/*.deb); do
   topic "Installing $(basename $DEB)"
   dpkg -x $DEB $BUILD_DIR/.apt/
 done
