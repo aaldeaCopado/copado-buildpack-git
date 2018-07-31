@@ -18,18 +18,30 @@ function topic() {
 APT_CACHE_DIR="$CACHE_DIR/apt/cache"
 APT_STATE_DIR="$CACHE_DIR/apt/state"
 APT_SOURCES_LIST="$BUILD_DIR/sources.list"
-CURL_TGZ_DIR="$DEB_FILES/curl-7.58.0_heroku16.tar.gz"
+CURL_SRC_DIR="$BUILD_DIR/curl"
+CURL_TGZ_DIR="$DEB_FILES/curl-7.58.0.tar.gz"
 CURL_VERSION="curl-7.58.0"
-BUILD_DIR_CURL="$BUILD_DIR/.curl"
+WORKING_DIR=`pwd`
 
 mkdir -p "$APT_CACHE_DIR/archives/partial"
 mkdir -p "$APT_STATE_DIR/lists/partial"
-mkdir -p "BUILD_DIR_CURL"
 
 APT_OPTIONS="-o debug::nolocking=true -o dir::cache=$APT_CACHE_DIR -o dir::state=$APT_STATE_DIR -o dir::etc::sourcelist=$APT_SOURCES_LIST"
 
-topic "Extracting cURL binaries from $CURL_TGZ_DIR to $BUILD_DIR_CURL"
-tar -xf $CURL_TGZ_DIR -C BUILD_DIR_CURL
+topic "Compiling cURL with system openSSL library"
+topic "Creating directory $CURL_SRC_DIR"
+mkdir -p "$CURL_SRC_DIR"
+topic "Extracting cURL sources from $CURL_TGZ_DIR to $CURL_SRC_DIR"
+tar -xf $CURL_TGZ_DIR -C $CURL_SRC_DIR
+
+topic "Compiling cURL..."
+cd $CURL_SRC_DIR/$CURL_VERSION
+$CURL_SRC_DIR/$CURL_VERSION/configure --with-ssl --prefix=$BUILD_DIR/.curl
+make
+make install
+rm -rf $CURL_SRC_DIR
+cd $WORKING_DIR
+
 
 topic "Installing .debs for git"
 
