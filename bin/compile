@@ -36,7 +36,7 @@ tar -xf $CURL_TGZ_DIR -C $CURL_SRC_DIR
 ls -lart $CURL_SRC_DIR/$CURL_VERSION/
 topic "Compiling cURL..."
 cd $CURL_SRC_DIR/$CURL_VERSION
-$CURL_SRC_DIR/$CURL_VERSION/.configure --with-ssl --prefix=$BUILD_DIR/.curl
+$CURL_SRC_DIR/$CURL_VERSION/configure --with-ssl --prefix=$BUILD_DIR/.curl
 make
 make install
 
