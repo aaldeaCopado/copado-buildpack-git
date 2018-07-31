@@ -20,7 +20,7 @@ APT_STATE_DIR="$CACHE_DIR/apt/state"
 APT_SOURCES_LIST="$BUILD_DIR/sources.list"
 CURL_TGZ_DIR="$DEB_FILES/curl-7.58.0_heroku16.tar.gz"
 CURL_VERSION="curl-7.58.0"
-BUILD_DIR_CURL="$BUILD_DIR/.curl"
+BUILD_DIR_CURL="/app/.curl"
 
 mkdir -p "$APT_CACHE_DIR/archives/partial"
 mkdir -p "$APT_STATE_DIR/lists/partial"
