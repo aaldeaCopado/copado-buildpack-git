@@ -39,11 +39,11 @@ cd $CURL_SRC_DIR/$CURL_VERSION
 $CURL_SRC_DIR/$CURL_VERSION/configure --with-ssl --prefix=$BUILD_DIR/.curl
 make
 make install
-ls -lart $BUILD_DIR/.curl
+rm -rf $CURL_SRC_DIR
 cd $WORKING_DIR
 
 
-topic "Installing .debs for git at $WORKING_DIR"
+topic "Installing .debs for git"
 
 for DEB in $(ls -1 $DEB_FILES/*.deb); do
   topic "Installing $DEB"
