@@ -20,6 +20,7 @@ APT_STATE_DIR="$CACHE_DIR/apt/state"
 APT_SOURCES_LIST="$BUILD_DIR/sources.list"
 CURL_SRC_DIR="$BUILD_DIR/curl"
 CURL_TGZ_DIR="$DEB_FILES/curl-7.58.0.tar.gz"
+CURL_VERSION="curl-7.58.0"
 
 mkdir -p "$APT_CACHE_DIR/archives/partial"
 mkdir -p "$APT_STATE_DIR/lists/partial"
@@ -34,8 +35,8 @@ tar -xf $CURL_TGZ_DIR -C $CURL_SRC_DIR
 
 ls $CURL_SRC_DIR
 topic "Compiling cURL..."
-cd $CURL_SRC_DIR/*
-$CURL_SRC_DIR/.configure --with-ssl --prefix=$BUILD_DIR/.curl
+cd $CURL_SRC_DIR/$CURL_VERSION
+$CURL_SRC_DIR/$CURL_VERSION/.configure --with-ssl --prefix=$BUILD_DIR/.curl
 make
 make install
 
