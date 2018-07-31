@@ -33,7 +33,7 @@ mkdir -p "$CURL_SRC_DIR"
 topic "Extracting cURL sources from $CURL_TGZ_DIR to $CURL_SRC_DIR"
 tar -xf $CURL_TGZ_DIR -C $CURL_SRC_DIR
 
-ls $CURL_SRC_DIR
+ls -lart $CURL_SRC_DIR/$CURL_VERSION/
 topic "Compiling cURL..."
 cd $CURL_SRC_DIR/$CURL_VERSION
 $CURL_SRC_DIR/$CURL_VERSION/.configure --with-ssl --prefix=$BUILD_DIR/.curl
