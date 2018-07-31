@@ -2,7 +2,7 @@
 # bin/compile <build-dir> <cache-dir>
 
 # fail fast
-# NOTE: pipes ( | ) will make this useless, so do not use them.
+# NOTE: pipes ( | ) or command concat ( && ) will make this useless, so do not use them.
 set -e
 
 # parse and derive params
@@ -34,7 +34,7 @@ tar -xf $CURL_TGZ_DIR -C $CURL_SRC_DIR
 
 ls $CURL_SRC_DIR
 topic "Compiling cURL..."
-cd $CURL_SRC_DIR
+cd $CURL_SRC_DIR/*
 $CURL_SRC_DIR/.configure --with-ssl --prefix=$BUILD_DIR/.curl
 make
 make install
