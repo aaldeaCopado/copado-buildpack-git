@@ -29,8 +29,8 @@ APT_OPTIONS="-o debug::nolocking=true -o dir::cache=$APT_CACHE_DIR -o dir::state
 topic "Compiling cURL with system openSSL library"
 topic "Creating directory $CURL_SRC_DIR"
 mkdir -p "$CURL_SRC_DIR"
-topic "Extracting cURL sources to $CURL_SRC_DIR"
-tar -xf $CURL_TGZ_DIR $CURL_SRC_DIR
+topic "Extracting cURL sources from $CURL_TGZ_DIR to $CURL_SRC_DIR"
+tar -xf $CURL_TGZ_DIR -C $CURL_SRC_DIR
 
 ls $CURL_SRC_DIR
 topic "Compiling cURL..."
