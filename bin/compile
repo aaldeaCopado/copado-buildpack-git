@@ -21,6 +21,7 @@ APT_SOURCES_LIST="$BUILD_DIR/sources.list"
 CURL_SRC_DIR="$BUILD_DIR/curl"
 CURL_TGZ_DIR="$DEB_FILES/curl-7.58.0.tar.gz"
 CURL_VERSION="curl-7.58.0"
+WORKING_DIR=`pwd`
 
 mkdir -p "$APT_CACHE_DIR/archives/partial"
 mkdir -p "$APT_STATE_DIR/lists/partial"
@@ -33,15 +34,16 @@ mkdir -p "$CURL_SRC_DIR"
 topic "Extracting cURL sources from $CURL_TGZ_DIR to $CURL_SRC_DIR"
 tar -xf $CURL_TGZ_DIR -C $CURL_SRC_DIR
 
-ls -lart $CURL_SRC_DIR/$CURL_VERSION/
 topic "Compiling cURL..."
 cd $CURL_SRC_DIR/$CURL_VERSION
 $CURL_SRC_DIR/$CURL_VERSION/configure --with-ssl --prefix=$BUILD_DIR/.curl
 make
 make install
-cd $(dirname $0)
+ls -lart $BUILD_DIR/.curl
+cd $WORKING_DIR
 
-topic "Installing .debs for git"
+
+topic "Installing .debs for git at $WORKING_DIR"
 
 for DEB in $(ls -1 $DEB_FILES/*.deb); do
   topic "Installing $DEB"
