@@ -34,7 +34,10 @@ tar -xf $CURL_TGZ_DIR -C $CURL_SRC_DIR
 
 ls $CURL_SRC_DIR
 topic "Compiling cURL..."
-cd $CURL_SRC_DIR && $CURL_SRC_DIR/configure --with-ssl --prefix=$BUILD_DIR/.curl && make && make install
+cd $CURL_SRC_DIR
+$CURL_SRC_DIR/.configure --with-ssl --prefix=$BUILD_DIR/.curl
+make
+make install
 
 
 topic "Installing .debs for git"
