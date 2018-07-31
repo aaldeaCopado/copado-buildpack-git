@@ -39,7 +39,7 @@ cd $CURL_SRC_DIR/$CURL_VERSION
 $CURL_SRC_DIR/$CURL_VERSION/configure --with-ssl --prefix=$BUILD_DIR/.curl
 make
 make install
-
+cd $(dirname $0)
 
 topic "Installing .debs for git"
 
