@@ -19,7 +19,7 @@ APT_CACHE_DIR="$CACHE_DIR/apt/cache"
 APT_STATE_DIR="$CACHE_DIR/apt/state"
 APT_SOURCES_LIST="$BUILD_DIR/sources.list"
 CURL_SRC_DIR="$BUILD_DIR/curl"
-CURL_TGZ="curl-7.58.0.tar.gz"
+CURL_TGZ_DIR="$DEB_FILES/curl-7.58.0.tar.gz"
 
 mkdir -p "$APT_CACHE_DIR/archives/partial"
 mkdir -p "$APT_STATE_DIR/lists/partial"
@@ -30,7 +30,7 @@ topic "Compiling cURL with system openSSL library"
 topic "Creating directory $CURL_SRC_DIR"
 mkdir -p "$CURL_SRC_DIR"
 topic "Extracting cURL sources to $CURL_SRC_DIR"
-tar -xf $CURL_TGZ $CURL_SRC_DIR
+tar -xf $CURL_TGZ_DIR $CURL_SRC_DIR
 
 ls $CURL_SRC_DIR
 topic "Compiling cURL..."
